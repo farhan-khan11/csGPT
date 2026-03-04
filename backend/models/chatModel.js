@@ -2,13 +2,19 @@ import express from "express";
 import mongoose from "mongoose";
 
 const chatSchema = new mongoose.Schema({
-    userId: {
+    prompt: {
         type: String
     },
-    role: {
+    response: {
         type: String
     },
-    content: {
+    model:{
+        type : String
+    },
+    latency_ms: {
+        type: String
+    },
+    tokens_generated : {
         type: String
     },
     created_at: {
