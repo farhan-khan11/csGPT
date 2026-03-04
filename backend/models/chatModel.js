@@ -2,6 +2,9 @@ import express from "express";
 import mongoose from "mongoose";
 
 const chatSchema = new mongoose.Schema({
+    userId: {
+        type:String
+    },
     prompt: {
         type: String
     },

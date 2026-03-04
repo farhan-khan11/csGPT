@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import dotenv from 'dotenv'
-dotenv.config()
+import { useNavigate } from 'react-router-dom'
 
-const PORT = process.env.MAIN_PORT
-
+const backendUrl = import.meta.env.VITE_BACKEND_PORT
 
 const Register = () => {
+
+    const navigate = useNavigate();
 
     const [registerFormData, setRegisterFormData] = useState({ email: "", password: "" });
 
@@ -20,13 +20,20 @@ const Register = () => {
     }
 
     const onSubmitHandler = async (e) => {
+        e.preventDefault();
         try {
-            e.preventDefault();
             // const { data } = await axios.post(`http://localhost:5050/api/auth/register`, registerFormData);
-            const { data } = await axios.post(`http://${PORT}:3000/register`, registerFormData);
-            console.log("data : ", registerFormData);
+            const { data } = await axios.post(`${backendUrl}/register`, registerFormData);
+            console.log("data : ", data);
+
+            if (data.success) {
+                navigate('/login', { replace: true })
+            }
         } catch (error) {
             console.log(error)
+            if (error.response.data.message) {
+                alert(error.response.data.message)
+            }
         }
     }
     return (
