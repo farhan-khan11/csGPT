@@ -10,6 +10,7 @@ import jwt from 'jsonwebtoken'
 import './dbConnect.js'
 import Chat from './models/chatModel.js';
 import User from './models/user.js';
+import authMiddleware from './auth.middleware.js';
 
 dotenv.config()
 
@@ -20,10 +21,10 @@ server.use(cors());
 server.use(express.json());
 
 const generateToken = (payload) => {
-    return jwt.sign({ payload }, process.env.SECRET, { expiresIn: "30min" });
+    return jwt.sign({ payload }, process.env.JWT_SECRET, { expiresIn: "30min" });
 }
 
-server.get('/', async (req, res) => {
+server.get('/test', async (req, res) => {
     try {
         const db = mongoose.connection.db;
 
@@ -107,9 +108,9 @@ server.post("/login", async (req, res) => {
 
         let payload = {
             user_id: user._id,
-            email: user.email,
-            role: user.role,
+            email: user.email
         };
+        console.log("payload : ", payload)
 
         const jwtToken = generateToken(payload);
         user.jwtToken = jwtToken;
@@ -128,14 +129,16 @@ server.post("/login", async (req, res) => {
     }
 })
 
-server.post('/chat', async (req, res) => {
+server.post('/chat', authMiddleware, async (req, res) => {
     try {
-        const { userId, prompt } = req.body;
+        const {prompt } = req.body;
 
-        if (!userId || !prompt) {
-            console.log("user_id and message are required")
-            return res.status(400).json({ message: "user_id and message are required" });
+        if (!prompt) {
+            console.log("Please enter the prompt")
+            return res.status(400).json({ message: "Please enter the prompt" });
         }
+
+        const userId = req.user._id
 
         const history = await Chat.find({ userId }).sort({ timestamp: 1 });
 
@@ -157,6 +160,7 @@ server.post('/chat', async (req, res) => {
 
 
         await Chat.create({
+            userId,
             prompt: prompt,
             response: ai_reply,
             model: data.model
