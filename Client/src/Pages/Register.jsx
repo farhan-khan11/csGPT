@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import dotenv from 'dotenv'
+dotenv.config()
+
+const PORT = process.env.MAIN_PORT
+
 
 const Register = () => {
 
@@ -17,7 +22,8 @@ const Register = () => {
     const onSubmitHandler = async (e) => {
         try {
             e.preventDefault();
-            const { data } = await axios.post(`http://localhost:5050/api/auth/register`, registerFormData);
+            // const { data } = await axios.post(`http://localhost:5050/api/auth/register`, registerFormData);
+            const { data } = await axios.post(`http://${PORT}:3000/register`, registerFormData);
             console.log("data : ", registerFormData);
         } catch (error) {
             console.log(error)

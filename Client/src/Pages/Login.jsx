@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import dotenv from 'dotenv'
+dotenv.config()
+
+const PORT = process.env.MAIN_PORT
 
 const Login = () => {
 
@@ -26,7 +30,8 @@ const Login = () => {
     const onSubmitHandler = async (e) => {
         try {
             e.preventDefault();
-            const { data } = await axios.post(`http://localhost:5050/api/auth/login`, loginFormData);
+            // const { data } = await axios.post(`http://localhost:5050/api/auth/login`, loginFormData);
+            const { data } = await axios.post(`http:/${PORT}:3000/login`, loginFormData);
             console.log("data : ", loginFormData);
             localStorage.setItem("token", data.otherdata.jwtToken)
             navigate('/chat')
