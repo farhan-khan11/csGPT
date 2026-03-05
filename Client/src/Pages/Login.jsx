@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
+import { AnimatedLogin } from '../components/animatedLogin'
+
 const backendUrl = import.meta.env.VITE_BACKEND_PORT
 
 const Login = () => {
@@ -28,6 +30,7 @@ const Login = () => {
     const onSubmitHandler = async (e) => {
         try {
             e.preventDefault();
+            console.log("login clicked")
             // const { data } = await axios.post(`http://localhost:5050/api/auth/login`, loginFormData);
             // const { data } = await axios.post(`${backendUrl}/login`, loginFormData);
             const { data } = await axios.post('/login', loginFormData);
@@ -46,22 +49,30 @@ const Login = () => {
         }
     }
     return (
-        <>
-            <div>Login Page</div>
-            <form onSubmit={onSubmitHandler}>
-                <div className='container'>
-                    <p>Please fill the below details to login</p>
-                    <hr />
-                    <label htmlFor='email'>email :</label>
-                    <input type='text' placeholder='Enter your email' name='email' id='email' onChange={onChangeHandler} />
-                    <label htmlFor='password'>Password :</label>
-                    <input type='password' placeholder='Enter password' name='password' id='password' onChange={onChangeHandler} />
-                    <button type="submit" className="loginbtn">Login</button>
-
-                </div>
-            </form>
-        </>
+        <AnimatedLogin
+            loginFormData={loginFormData}
+            onChangeHandler={onChangeHandler}
+            onSubmitHandler={onSubmitHandler}
+        />
     )
+
+    // return (
+    //     <>
+    //         <div>Login Page</div>
+    //         <form onSubmit={onSubmitHandler}>
+    //             <div className='container'>
+    //                 <p>Please fill the below details to login</p>
+    //                 <hr />
+    //                 <label htmlFor='email'>email :</label>
+    //                 <input type='text' placeholder='Enter your email' name='email' id='email' onChange={onChangeHandler} />
+    //                 <label htmlFor='password'>Password :</label>
+    //                 <input type='password' placeholder='Enter password' name='password' id='password' onChange={onChangeHandler} />
+    //                 <button type="submit" className="loginbtn">Login</button>
+
+    //             </div>
+    //         </form>
+    //     </>
+    // )
 }
 
 export default Login

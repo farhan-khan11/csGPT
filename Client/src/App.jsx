@@ -9,18 +9,21 @@ const App = () => {
   return (
     <>
       {/* <div>App</div> */}
+      <div className="min-h-screen bg-black text-white">
+        {/* your routes or components */}
 
-      <Routes>
+        <Routes>
 
-        <Route element={<PrivateRoutes />}>
-          <Route path='/chat' element={<Chat />}></Route>
-        </Route>
+          <Route element={<PrivateRoutes />}>
+            <Route path='/chat' element={<Chat />}></Route>
+          </Route>
 
-        <Route path='/' element={<Register />}></Route>
+          <Route path='/' element={<Register />}></Route>
 
-        <Route path='/login' element={<Login />}></Route>
+          <Route path='/login' element={<Login />}></Route>
 
-      </Routes>
+        </Routes>
+      </div>
 
     </>
   )
