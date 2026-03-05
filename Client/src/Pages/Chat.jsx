@@ -29,7 +29,14 @@ const Chat = () => {
         e.preventDefault();
         try {
             // const { data } = await axios.post(`http://localhost:5050/api/auth/register`, registerFormData);
-            const { data } = await axios.post(`${backendUrl}/chat`, { prompt: promptData.prompt }, {
+            // const { data } = await axios.post(`${backendUrl}/chat`, { prompt: promptData.prompt }, {
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         'auth-token': token,
+            //     },
+            // }
+            // );
+            const { data } = await axios.post('/chat', { prompt: promptData.prompt }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'auth-token': token,
