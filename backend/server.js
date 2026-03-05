@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose';
 import input from 'readline-sync'
-import axios from 'axios'
+import axios, { toFormData } from 'axios'
 import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken'
@@ -149,6 +149,8 @@ server.post('/chat', authMiddleware, async (req, res) => {
 
         conversation += `user: ${prompt}, model:`
 
+        const startTime = Date.now()
+
         const { data } = await axios.post('http://127.0.0.1:11434/api/generate',
             {
                 model: "llama3.2",
@@ -156,14 +158,24 @@ server.post('/chat', authMiddleware, async (req, res) => {
                 stream: false
             })
 
+        const endTime = Date.now()
+        const latency_ms = endTime - startTime;
+
+        
         const ai_reply = data.response;
+
+        const input_tokens = data.prompt_eval_count
+        const output_tokens = data.eval_count
+        const total_tokens = input_tokens + output_tokens
 
 
         await Chat.create({
             userId,
             prompt: prompt,
             response: ai_reply,
-            model: data.model
+            model: data.model,
+            latency_ms: latency_ms,
+            tokens_generated: total_tokens
         })
 
         console.log("AI_Reply : ", ai_reply);

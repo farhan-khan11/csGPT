@@ -15,10 +15,10 @@ const chatSchema = new mongoose.Schema({
         type : String
     },
     latency_ms: {
-        type: String
+        type: Number
     },
     tokens_generated : {
-        type: String
+        type: Number
     },
     created_at: {
         type: Date,
