@@ -5,6 +5,7 @@ import {
     SendHorizontal
 } from 'lucide-react'
 
+import { LoadingText } from './loadingText'
 
 // FIGMA ICON
 function FigmaIcon({ className }) {
@@ -21,11 +22,11 @@ function FigmaIcon({ className }) {
 
 // MODEL SELECTOR
 const models = [
-    { id: 'sonnet-4.5', name: 'Sonnet 4.5', description: 'Fast & intelligent', icon: <Zap className="size-4 text-blue-400" />, badge: 'Default' },
-    { id: 'opus-4.5', name: 'Opus 4.5', description: 'Most capable', icon: <Sparkles className="size-4 text-purple-400" />, badge: 'Pro' },
-    { id: 'haiku-4.5', name: 'Haiku 4.5', description: 'Lightning fast', icon: <Brain className="size-4 text-emerald-400" /> },
-    { id: 'gpt-4o', name: 'GPT-4o', description: 'OpenAI flagship', icon: <Sparkles className="size-4 text-green-400" /> },
-    { id: 'gemini-2.0', name: 'Gemini 2.0', description: 'Google AI', icon: <Brain className="size-4 text-cyan-400" /> }
+    { id: 'llama-3.2', name: 'llama-3.2', description: 'Fast & intelligent', icon: <Zap className="size-4 text-blue-400" />, badge: 'Default' },
+    { id: 'phi3:mini', name: 'phi3:mini', description: 'Most capable', icon: <Sparkles className="size-4 text-purple-400" />, badge: 'Pro' },
+    // { id: 'haiku-4.5', name: 'Haiku 4.5', description: 'Lightning fast', icon: <Brain className="size-4 text-emerald-400" /> },
+    // { id: 'gpt-4o', name: 'GPT-4o', description: 'OpenAI flagship', icon: <Sparkles className="size-4 text-green-400" /> },
+    // { id: 'gemini-2.0', name: 'Gemini 2.0', description: 'Google AI', icon: <Brain className="size-4 text-cyan-400" /> }
 ]
 
 function ModelSelector({ selectedModel = 'sonnet-4.5', onModelChange }) {
@@ -312,12 +313,13 @@ export function BoltStyleChat({
 
     const [messages, setMessages] = useState([])
     const [started, setStarted] = useState(false)
+    const [loading, setLoading] = useState(false)
     const endRef = useRef(null)
 
     useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth" })
-}, [messages])
-    
+        endRef.current?.scrollIntoView({ behavior: "smooth" })
+    }, [messages])
+
     const handleSend = async (msg) => {
         console.log("handlesend here")
 
@@ -336,7 +338,11 @@ export function BoltStyleChat({
 
         try {
 
+            setLoading(true)
+
             const reply = await onSend(msg)
+
+            setLoading(false)
 
             if (reply) {
                 setMessages(prev => [
@@ -412,6 +418,19 @@ export function BoltStyleChat({
                             }
 
                         })}
+
+                        {
+                            loading && (
+                                <div className="flex justify-start w-full">
+                                    <div className="bg-[#1e1e22] text-white border border-white/10 px-4 py-2 rounded-xl">
+                                        <LoadingText className="text-sm">
+                                            AI is thinking
+                                        </LoadingText>
+                                    </div>
+                                </div>
+                            )
+                        }
+
                         <div ref={endRef}></div>
 
                     </div>

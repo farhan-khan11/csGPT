@@ -55,11 +55,21 @@ export default {
       colors: {
         primary: {
           // This is the light, warm beige/grey from the screenshot
-          DEFAULT: "#E5E5E1", 
+          DEFAULT: "#E5E5E1",
           foreground: "#1A1A1A", // Dark text for contrast
         },
         // Optional: match the darker sidebar background if needed
         // background: "#000000", 
+      },
+      animation: {
+        shimmer: "shimmer 2s linear infinite",
+      },
+
+      keyframes: {
+        shimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
       },
     },
   },
