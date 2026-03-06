@@ -43,8 +43,14 @@ const Login = () => {
             console.log(data);
         } catch (error) {
             console.log(error)
-            if (error.response.data.message) {
-                alert(error.response.data.message)
+            if (error.response && error.response.status === 403) {
+                alert(error.response.data.message);
+            }
+            if (error.response && error.response.status === 401) {
+                alert(error.response.data.message);
+                localStorage.removeItem("token");
+                localStorage.removeItem("userId");
+                navigate('/login');
             }
         }
     }

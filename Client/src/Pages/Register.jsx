@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
+import { AnimatedRegister } from '../components/animatedRegister'
 const backendUrl = import.meta.env.VITE_BACKEND_PORT
 
 const Register = () => {
@@ -38,41 +39,49 @@ const Register = () => {
             }
         }
     }
+
     return (
-        <>
-            <div>Register Page</div>
-            <form onSubmit={onSubmitHandler}>
-                <div className="container">
-                    <p>Please fill in this form to create an account.</p>
-                    <hr />
+            <AnimatedRegister
+                registerFormData={registerFormData}
+                onChangeHandler={onChangeHandler}
+                onSubmitHandler={onSubmitHandler}
+            />
+        )
+    // return (
+    //     <>
+    //         <div>Register Page</div>
+    //         <form onSubmit={onSubmitHandler}>
+    //             <div className="container">
+    //                 <p>Please fill in this form to create an account.</p>
+    //                 <hr />
 
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        placeholder="Enter Your Email"
-                        name="email"
-                        id="email"
-                        onChange={onChangeHandler}
-                        required
-                    />
+    //                 <label htmlFor="email">Email:</label>
+    //                 <input
+    //                     type="email"
+    //                     placeholder="Enter Your Email"
+    //                     name="email"
+    //                     id="email"
+    //                     onChange={onChangeHandler}
+    //                     required
+    //                 />
 
 
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        placeholder="Enter Your Password"
-                        name="password"
-                        id="password"
-                        onChange={onChangeHandler}
-                        required
-                    />
-                    <hr />
+    //                 <label htmlFor="password">Password:</label>
+    //                 <input
+    //                     type="password"
+    //                     placeholder="Enter Your Password"
+    //                     name="password"
+    //                     id="password"
+    //                     onChange={onChangeHandler}
+    //                     required
+    //                 />
+    //                 <hr />
 
-                    <button type="submit" className="registerbtn">Register</button>
-                </div>
-            </form>
-        </>
-    )
+    //                 <button type="submit" className="registerbtn">Register</button>
+    //             </div>
+    //         </form>
+    //     </>
+    // )
 }
 
 export default Register

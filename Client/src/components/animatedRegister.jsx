@@ -158,8 +158,7 @@ const EyeBall = ({
 
 
 
-// function LoginPage() {
-function LoginPage({ loginFormData, onChangeHandler, onSubmitHandler }) {
+function RegisterPage({ registerFormData, onChangeHandler, onSubmitHandler }) {
     const [showPassword, setShowPassword] = useState(false);
     // const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -312,8 +311,8 @@ function LoginPage({ loginFormData, onChangeHandler, onSubmitHandler }) {
     return (
         <div className="min-h-screen grid lg:grid-cols-2">
             {/* Left Content Section */}
-            {/* <div className="relative hidden lg:flex flex-col justify-between bg-gradient-to-br from-primary/90 via-primary to-primary/80 p-12 text-primary-foreground"> */}
-            <div className="relative hidden lg:flex flex-col justify-between bg-gradient-to-br from-purple-700 via-purple-600 to-purple-500 p-12 text-white">
+            <div className="relative hidden lg:flex flex-col justify-between bg-gradient-to-br from-primary/90 via-primary to-primary/80 p-12 text-primary-foreground">
+            {/* <div className="relative flex flex-col justify-between bg-gradient-to-br from-primary/90 via-primary to-primary/80 p-12 text-primary-foreground text-white"> */}
                 <div className="relative z-20">
                     <div className="flex items-center gap-2 text-lg font-semibold">
                         <div className="size-8 rounded-lg bg-primary-foreground/10 backdrop-blur-sm flex items-center justify-center">
@@ -525,7 +524,7 @@ function LoginPage({ loginFormData, onChangeHandler, onSubmitHandler }) {
 
                     {/* Header */}
                     <div className="text-center mb-10">
-                        <h1 className="text-3xl font-bold tracking-tight mb-2">Welcome back!</h1>
+                        <h1 className="text-3xl font-bold tracking-tight mb-2">Welcome to CSGPT!</h1>
                         <p className="text-muted-foreground text-sm">Please enter your details</p>
                     </div>
 
@@ -539,7 +538,7 @@ function LoginPage({ loginFormData, onChangeHandler, onSubmitHandler }) {
                                 placeholder="example@gmail.com"
                                 autoComplete="off"
                                 name="email"
-                                value={loginFormData.email}
+                                value={registerFormData.email}
                                 onChange={onChangeHandler}
                                 onFocus={() => setIsTyping(true)}
                                 onBlur={() => setIsTyping(false)}
@@ -556,7 +555,7 @@ function LoginPage({ loginFormData, onChangeHandler, onSubmitHandler }) {
                                     type={showPassword ? "text" : "password"}
                                     placeholder="••••••••"
                                     name="password"
-                                    value={loginFormData.password}
+                                    value={registerFormData.password}
                                     onChange={onChangeHandler}
                                     required
                                     className="h-12 pr-10 bg-background border-border/60 focus:border-primary text-black"
@@ -606,7 +605,7 @@ function LoginPage({ loginFormData, onChangeHandler, onSubmitHandler }) {
                             disabled={isLoading}
                         >
                             {/* {isLoading ? "Signing in..." : "Log in"} */}
-                            Log in
+                            Sign Up
                         </Button>
                     </form>
 
@@ -624,10 +623,10 @@ function LoginPage({ loginFormData, onChangeHandler, onSubmitHandler }) {
 
                     {/* Sign Up Link */}
                     <div className="text-center text-sm text-muted-foreground mt-8">
-                        Don't have an account ? {" "}
+                        Already have an account ? {" "}
                         <h3>
-                            <Link to='/' className="text-foreground font-medium hover:underline">
-                                Sign Up
+                            <Link to='/login' className="text-foreground font-medium hover:underline">
+                                Log in
                             </Link>
                         </h3>
                         {/* <a href="#" className="text-foreground text-2xl font-medium hover:underline">
@@ -642,5 +641,5 @@ function LoginPage({ loginFormData, onChangeHandler, onSubmitHandler }) {
 
 
 
-export const AnimatedLogin = LoginPage;
+export const AnimatedRegister = RegisterPage;
 

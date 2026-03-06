@@ -312,7 +312,12 @@ export function BoltStyleChat({
 
     const [messages, setMessages] = useState([])
     const [started, setStarted] = useState(false)
+    const endRef = useRef(null)
 
+    useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" })
+}, [messages])
+    
     const handleSend = async (msg) => {
         console.log("handlesend here")
 
@@ -380,8 +385,9 @@ export function BoltStyleChat({
             {started && (
                 <>
                     {/* messages */}
-                    <div className="relative z-20 flex flex-col gap-6 w-full max-w-[900px] mx-auto px-6 pt-24 pb-32">
-                        <div className="relative z-20 flex flex-col gap-6 w-full max-w-[900px] mx-auto px-6 pt-24 pb-32"></div>
+                    {/* <div className="relative z-20 flex flex-col gap-6 w-full max-w-[900px] mx-auto px-6 pt-24 pb-32"> */}
+                    <div className="relative z-20 flex flex-col gap-6 w-full max-w-[900px] mx-auto px-6 pt-24 pb-48">
+                        {/* <div className="relative z-20 flex flex-col gap-6 w-full max-w-[900px] mx-auto px-6 pt-24 pb-32"></div> */}
 
                         {messages.map((msg, i) => {
 
@@ -406,6 +412,7 @@ export function BoltStyleChat({
                             }
 
                         })}
+                        <div ref={endRef}></div>
 
                     </div>
 
