@@ -23,8 +23,8 @@ const Register = () => {
         e.preventDefault();
         try {
             // const { data } = await axios.post(`http://localhost:5050/api/auth/register`, registerFormData);
-            // const { data } = await axios.post(`${backendUrl}/register`, registerFormData);
-            const { data } = await axios.post('/register', registerFormData);
+            const { data } = await axios.post(`${backendUrl}/register`, registerFormData);
+            // const { data } = await axios.post('/register', registerFormData);
 
             console.log("data : ", data);
 

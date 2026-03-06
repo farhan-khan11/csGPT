@@ -32,8 +32,8 @@ const Login = () => {
             e.preventDefault();
             console.log("login clicked")
             // const { data } = await axios.post(`http://localhost:5050/api/auth/login`, loginFormData);
-            // const { data } = await axios.post(`${backendUrl}/login`, loginFormData);
-            const { data } = await axios.post('/login', loginFormData);
+            const { data } = await axios.post(`${backendUrl}/login`, loginFormData);
+            // const { data } = await axios.post('/login', loginFormData);
 
             console.log("loginformdata : ", loginFormData);
             console.log("data.otherdata.jwtToken : ", data.user.jwtToken)
