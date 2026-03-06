@@ -15,6 +15,12 @@ const Chat = () => {
 
     const userId = localStorage.getItem("userId");
 
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        navigate("/");
+    };
+
     // const [promptData, setPromptData] = useState({ prompt: "", userId: "" });
 
     const [aiReply, setAiReply] = useState("")
@@ -100,6 +106,7 @@ This function connects your UI input to your existing handlers
             // onChangeHandler={onChangeHandler}
             // onSubmitHandler={onSubmitHandler}
             onSend={onSubmitHandler}
+            onLogout={handleLogout}
         />
     )
 

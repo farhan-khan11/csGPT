@@ -308,7 +308,7 @@ function ImportButtons({ onImport }) {
 
 export function BoltStyleChat({
     placeholder = "What do you want to build?",
-    onSend
+    onSend, onLogout
 }) {
 
     const [messages, setMessages] = useState([])
@@ -360,6 +360,15 @@ export function BoltStyleChat({
         <div className="relative flex flex-col min-h-screen w-full overflow-hidden bg-[#0f0f0f]">
 
             <RayBackground />
+
+            <div className="absolute top-6 right-6 z-30">
+                <button
+                    onClick={onLogout}
+                    className="px-4 py-2 rounded-lg bg-red-500 hover:bg-red-600 text-white text-sm font-medium transition"
+                >
+                    Logout
+                </button>
+            </div>
 
             {/* INITIAL SCREEN */}
             {!started && (
