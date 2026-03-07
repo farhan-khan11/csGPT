@@ -6,6 +6,9 @@ import axios, { toFormData } from 'axios'
 import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken'
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url';
 
 import './dbConnect.js'
 import Chat from './models/chatModel.js';
@@ -13,6 +16,9 @@ import User from './models/user.js';
 import authMiddleware from './auth.middleware.js';
 
 dotenv.config()
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const server = express()
 const PORT = 3000;
@@ -23,6 +29,10 @@ server.use(express.json());
 const generateToken = (payload) => {
     return jwt.sign({ payload }, process.env.JWT_SECRET, { expiresIn: "30min" });
 }
+
+// 🏗️ Serve frontend build files first
+const buildPath = path.join(__dirname, "dist");
+
 
 server.get('/test', async (req, res) => {
     try {
@@ -119,7 +129,7 @@ server.post("/login", async (req, res) => {
 
         const otherdata = user.toObject()
         delete otherdata.password
-        
+
         console.log("User login Successfull", otherdata);
         return res.status(200).json({ message: "User login Successfull", user: otherdata })
 
@@ -131,7 +141,7 @@ server.post("/login", async (req, res) => {
 
 server.post('/chat', authMiddleware, async (req, res) => {
     try {
-        const {prompt } = req.body;
+        const { prompt } = req.body;
 
         if (!prompt) {
             console.log("Please enter the prompt")
@@ -161,7 +171,7 @@ server.post('/chat', authMiddleware, async (req, res) => {
         const endTime = Date.now()
         const latency_ms = endTime - startTime;
 
-        
+
         const ai_reply = data.response;
 
         const input_tokens = data.prompt_eval_count
@@ -185,6 +195,20 @@ server.post('/chat', authMiddleware, async (req, res) => {
         console.log(error)
         return res.status(500).json({ error: "ai model failed" })
     }
+})
+
+if (fs.existsSync(buildPath)) {
+    server.use(express.static(buildPath));
+
+    // React SPA fallback: send index.html for any unknown routes
+    server.get('*', (req, res) => {
+        res.sendFile(path.join(buildPath, "index.html"));
+    });
+}
+
+server.use(async(req,res)=>{
+    console.log("route not found");
+    return res.status(404).json({message: "route not found"})
 })
 
 // server.listen(PORT, () => {
