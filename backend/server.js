@@ -201,7 +201,7 @@ if (fs.existsSync(buildPath)) {
     server.use(express.static(buildPath));
 
     // React SPA fallback: send index.html for any unknown routes
-    server.get('*', (req, res) => {
+    server.use(async(req, res) => {
         res.sendFile(path.join(buildPath, "index.html"));
     });
 }
