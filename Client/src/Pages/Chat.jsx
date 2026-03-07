@@ -46,7 +46,7 @@ const Chat = () => {
             //     },
             // }
             // );
-            const { data } = await axios.post('/chat', { prompt: promptData.prompt }, {
+            const { data } = await axios.post('/chat', { prompt: msg }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'auth-token': token,
