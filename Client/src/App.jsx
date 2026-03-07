@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import PrivateRoutes from './Pages/PrivateRoutes'
 import Chat from './Pages/Chat'
 import Register from './Pages/Register'
@@ -21,6 +21,8 @@ const App = () => {
           <Route path='/' element={<Register />}></Route>
 
           <Route path='/login' element={<Login />}></Route>
+
+          <Route path='*' element={<Navigate to="/login" />}></Route>
 
         </Routes>
       </div>
