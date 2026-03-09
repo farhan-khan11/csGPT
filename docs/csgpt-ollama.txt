@@ -1,0 +1,54 @@
+ollama-ai-request/response :
+
+post request cmd :
+curl http://localhost:11434/api/generate -d '{"model":"llama3.2", "prompt":"what is blockchain"}'
+
+response :
+
+"total_duration":141464775242,"load_duration":505635814,"prompt_eval_count":28,"prompt_eval_duration":1091241851,"eval_count":496,"eval_duration":139439589595}
+
+--------------------------------------------------------------
+
+total_duration : 
+total time taken to process entire request. (in nano-seconds)
+
+load_duration :
+time taken to load the model into memory (in nano-seconds)
+
+prompt_eval_count :
+Number of tokens in the prompt that model processed. 
+what is blockchain (ai broke it into 28 tokens)
+
+prompt_eval_duration :
+time taken to process the prompt tokens (in nano-seconds)
+
+eval_count :
+Number of tokens generated in the response. (in our example : 496)
+
+eval_duration : 
+time spent generating the reponse tokens (in nano-seconds)
+-------------------------------------------------------------
+formulas to extract more info for our technical report :
+	  
+total request latency = 141464775242 ns == 141.46 sec
+model generation time = load_duration = 505635814ns == 0.50 sec
+
+tokens generated = eval_count = 496
+tokens per second = eval_count / eval_duration (convert in sec)
+	  example : 496 /  139.44
+	  ans	: 3.55 tokens/sec
+	  
+EC2 instance type :
+I used digital ocean droplet, 4GB RAM. 80GB Storage, ubuntu
+uses memory to run llama3.2 model :
+data: {
+	error: 'model requires more system memory (2.3 GiB) than is available (1.7 GiB)'
+   }
+}, status: 500
+
+Model used : llama3.2 
+EC2 Type : I am using digitalOcean droplet 4GB RAM, 80GB Storage
+Avg Latency  === total latency
+----------------------------------------------------------------
+
+ 
