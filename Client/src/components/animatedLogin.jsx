@@ -285,29 +285,6 @@ function LoginPage({ loginFormData, onChangeHandler, onSubmitHandler }) {
     const yellowPos = calculatePosition(yellowRef);
     const orangePos = calculatePosition(orangeRef);
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     setError("");
-    //     setIsLoading(true);
-
-    //     // Simulate API delay (quick)
-    //     await new Promise(resolve => setTimeout(resolve, 300));
-
-    //     // Mock authentication - validate against dummy credentials
-    //     if (email === "erik@gmail.com" && password === "1234") {
-    //         console.log("✅ Login successful!");
-    //         alert("Login successful! Welcome, Erik!");
-    //         // In a real app, you would:
-    //         // - Store auth token
-    //         // - Redirect to dashboard
-    //         // - Set user session
-    //     } else {
-    //         setError("Invalid email or password. Please try again.");
-    //         console.log("❌ Login failed");
-    //     }
-
-    //     setIsLoading(false);
-    // };
 
     return (
         <div className="min-h-screen grid lg:grid-cols-2">
@@ -575,29 +552,6 @@ function LoginPage({ loginFormData, onChangeHandler, onSubmitHandler }) {
                             </div>
                         </div>
 
-                        {/* <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-2">
-                                <Checkbox id="remember" />
-                                <Label
-                                    htmlFor="remember"
-                                    className="text-sm font-normal cursor-pointer"
-                                >
-                                    Remember for 30 days
-                                </Label>
-                            </div>
-                            <a
-                                href="#"
-                                className="text-sm text-primary hover:underline font-medium"
-                            >
-                                Forgot password?
-                            </a>
-                        </div> */}
-
-                        {/* {error && (
-                            <div className="p-3 text-sm text-red-400 bg-red-950/20 border border-red-900/30 rounded-lg">
-                                {error}
-                            </div>
-                        )} */}
 
                         <Button
                             type="submit"
@@ -610,17 +564,6 @@ function LoginPage({ loginFormData, onChangeHandler, onSubmitHandler }) {
                         </Button>
                     </form>
 
-                    {/* Social Login */}
-                    {/* <div className="mt-6">
-                        <Button
-                            variant="outline"
-                            className="w-full h-12 bg-background border-border/60 hover:bg-accent"
-                            type="button"
-                        >
-                            <Mail className="mr-2 size-5" />
-                            Log in with Google
-                        </Button>
-                    </div> */}
 
                     {/* Sign Up Link */}
                     <div className="text-center text-sm text-muted-foreground mt-8">
@@ -630,9 +573,7 @@ function LoginPage({ loginFormData, onChangeHandler, onSubmitHandler }) {
                                 Sign Up
                             </Link>
                         </h3>
-                        {/* <a href="#" className="text-foreground text-2xl font-medium hover:underline">
-                            Sign Up
-                        </a> */}
+                        
                     </div>
                 </div>
             </div>

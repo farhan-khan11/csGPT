@@ -51,7 +51,6 @@ server.get('/test', async (req, res) => {
     }
 })
 
-// server.post('/register', async(req,res))
 server.post("/register", async (req, res) => {
     try {
 

@@ -21,31 +21,12 @@ const Chat = () => {
         navigate("/");
     };
 
-    // const [promptData, setPromptData] = useState({ prompt: "", userId: "" });
 
     const [aiReply, setAiReply] = useState("")
 
-    // const onChangeHandler = (e) => {
-    //     try {
-    //         console.log(e.target.name, e.target.value);
-    //         setPromptData({ ...promptData, [e.target.name]: e.target.value })
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
 
     const onSubmitHandler = async (msg) => {
-        // e.preventDefault();
         try {
-            // const { data } = await axios.post(`http://localhost:5050/api/auth/register`, registerFormData);
-            // const { data } = await axios.post(`${backendUrl}/chat`, { prompt: promptData.prompt }, {
-            // const { data } = await axios.post(`${backendUrl}/chat`, { prompt: msg }, {
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'auth-token': token,
-            //     },
-            // }
-            // );
             const { data } = await axios.post('/chat', { prompt: msg }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,7 +35,6 @@ const Chat = () => {
             }
             );
             console.log("data : ", data);
-            // console.log("promptData.prompt : ", promptData.prompt);
             console.log("msg < == > : ", msg);
             console.log("AI_Response : ", data.AI_Reply)
             setAiReply(data.AI_Reply)
@@ -73,83 +53,15 @@ const Chat = () => {
         }
     }
 
-    /*
-This function connects your UI input to your existing handlers
-*/
-    // const handleSend = async (message) => {
-
-    //     // update prompt state
-    //     const fakeEventChange = {
-    //         target: {
-    //             name: "prompt",
-    //             value: message
-    //         }
-    //     }
-
-    //     onChangeHandler(fakeEventChange)
-
-    //     // submit request
-    //     const fakeEventSubmit = {
-    //         preventDefault: () => { }
-    //     }
-
-    //     await onSubmitHandler(fakeEventSubmit)
-
-    //     return aiReply
-    // }
 
 
     return (
         <BoltStyleChat
-            // promptData={promptData}
-            // aiReply={aiReply}
-            // onChangeHandler={onChangeHandler}
-            // onSubmitHandler={onSubmitHandler}
             onSend={onSubmitHandler}
             onLogout={handleLogout}
         />
     )
 
-    // return (
-    //     <>
-    //         <div>Chat Page</div>
-    //         <form onSubmit={onSubmitHandler}>
-    //             <div className="container">
-    //                 <p>enter the below.</p>
-    //                 <hr />
-
-    //                 <label htmlFor="prompt">Prompt:</label>
-    //                 <input
-    //                     type="text"
-    //                     placeholder="Enter the prompt"
-    //                     name="prompt"
-    //                     id="prompt"
-    //                     onChange={onChangeHandler}
-    //                     required
-    //                 />
-
-    //                 <div className="ai-response">
-    //                     <h3>AI Response:</h3>
-    //                     <p>{aiReply}</p>
-    //                 </div>
-
-
-    //                 {/* <label htmlFor="password">Password:</label>
-    //                 <input
-    //                     type="password"
-    //                     placeholder="Enter Your Password"
-    //                     name="password"
-    //                     id="password"
-    //                     onChange={onChangeHandler}
-    //                     required
-    //                 />
-    //                 <hr /> */}
-
-    //                 <button type="submit" className="registerbtn">generate</button>
-    //             </div>
-    //         </form>
-    //     </>
-    // )
 }
 
 export default Chat

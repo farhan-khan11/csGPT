@@ -264,47 +264,6 @@ function ImportButtons({ onImport }) {
 }
 
 
-// export function BoltStyleChat({
-//   title = "What will you",
-//   subtitle = "Create stunning apps & websites by chatting with AI.",
-//   announcementText = "Introducing Bolt V2",
-//   announcementHref = "#",
-//   placeholder = "What do you want to build?",
-//   onSend,
-//   onImport
-// }) {
-//   return (
-//     <div className="relative flex flex-col items-center justify-center min-h-screen w-full overflow-hidden bg-[#0f0f0f]">
-//       <RayBackground />
-//       <div className="absolute top-[70px]">
-//         {/* Announcement badge */}
-//           <AnnouncementBadge text={announcementText} href={announcementHref} />
-//         </div>
-//       {/* Content container */}
-//       <div className="absolute top-[66%] left-1/2 sm:top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center w-full h-full overflow-hidden px-4">
-//         {/* Title section */}
-//         <div className="text-center mb-6">
-//           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-1">
-//             {title}{' '}
-//             <span className="bg-gradient-to-b from-[#4da5fc] via-[#4da5fc] to-white bg-clip-text text-transparent italic">
-//               build
-//             </span>
-//             {' '}today?
-//           </h1>
-//           <p className="text-base font-semibold sm:text-lg text-[#8a8a8f]">{subtitle}</p>
-//         </div>
-
-//         {/* Chat input */}
-//         <div className="w-full max-w-[700px] mb-6 sm:mb-8 mt-2">
-//           <ChatInput placeholder={placeholder} onSend={onSend} />
-//         </div>
-
-//         {/* Import buttons */}
-//         <ImportButtons onImport={onImport} />
-//       </div>
-//     </div>
-//   )
-// }
 
 export function BoltStyleChat({
     placeholder = "What do you want to build?",
@@ -400,9 +359,7 @@ export function BoltStyleChat({
             {started && (
                 <>
                     {/* messages */}
-                    {/* <div className="relative z-20 flex flex-col gap-6 w-full max-w-[900px] mx-auto px-6 pt-24 pb-32"> */}
                     <div className="relative z-20 flex flex-col gap-6 w-full max-w-[900px] mx-auto px-6 pt-24 pb-48">
-                        {/* <div className="relative z-20 flex flex-col gap-6 w-full max-w-[900px] mx-auto px-6 pt-24 pb-32"></div> */}
 
                         {messages.map((msg, i) => {
 

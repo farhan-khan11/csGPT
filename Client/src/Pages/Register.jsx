@@ -23,8 +23,6 @@ const Register = () => {
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         try {
-            // const { data } = await axios.post(`http://localhost:5050/api/auth/register`, registerFormData);
-            // const { data } = await axios.post(`${backendUrl}/register`, registerFormData);
             const { data } = await axios.post('/register', registerFormData);
 
             console.log("data : ", data);
@@ -47,41 +45,6 @@ const Register = () => {
                 onSubmitHandler={onSubmitHandler}
             />
         )
-    // return (
-    //     <>
-    //         <div>Register Page</div>
-    //         <form onSubmit={onSubmitHandler}>
-    //             <div className="container">
-    //                 <p>Please fill in this form to create an account.</p>
-    //                 <hr />
-
-    //                 <label htmlFor="email">Email:</label>
-    //                 <input
-    //                     type="email"
-    //                     placeholder="Enter Your Email"
-    //                     name="email"
-    //                     id="email"
-    //                     onChange={onChangeHandler}
-    //                     required
-    //                 />
-
-
-    //                 <label htmlFor="password">Password:</label>
-    //                 <input
-    //                     type="password"
-    //                     placeholder="Enter Your Password"
-    //                     name="password"
-    //                     id="password"
-    //                     onChange={onChangeHandler}
-    //                     required
-    //                 />
-    //                 <hr />
-
-    //                 <button type="submit" className="registerbtn">Register</button>
-    //             </div>
-    //         </form>
-    //     </>
-    // )
 }
 
 export default Register
