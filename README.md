@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![csGPT Banner]
+![csGPT Banner](backend/dist/favicon.png)
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-csgpt.farhankhan.in-brightgreen?style=for-the-badge&logo=vercel)](https://csgpt.farhankhan.in)
 [![Documentation](https://img.shields.io/badge/Technical%20Report-PDF-red?style=for-the-badge&logo=adobeacrobatreader)](https://github.com/farhan-khan11/csGPT/blob/main/docs/FarhanKhan_csgpt_Technical-Report.pdf)
