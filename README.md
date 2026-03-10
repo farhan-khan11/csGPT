@@ -2,12 +2,11 @@
 
 <div align="center">
 
-![csGPT Banner](https://img.shields.io/badge/csGPT-AI%20Chat%20Assistant-blue?style=for-the-badge&logo=openai&logoColor=white)
+![csGPT Banner]
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-csgpt.farhankhan.in-brightgreen?style=for-the-badge&logo=vercel)](https://csgpt.farhankhan.in)
 [![Documentation](https://img.shields.io/badge/Technical%20Report-PDF-red?style=for-the-badge&logo=adobeacrobatreader)](https://github.com/farhan-khan11/csGPT/blob/main/docs/FarhanKhan_csgpt_Technical-Report.pdf)
 [![Performance Metrics](https://img.shields.io/badge/Performance%20Metrics-Report-orange?style=for-the-badge&logo=chartdotjs)](https://github.com/farhan-khan11/csGPT/blob/main/docs/csgpt_performance_metrics_report.pdf)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](./LICENSE)
 
 **A full-stack AI chat application powered by a locally hosted LLM via Ollama — delivering real-time, intelligent responses through a modern web interface.**
 
@@ -50,22 +49,46 @@ The system is designed to demonstrate how open-source LLMs can be embedded into 
 ---
 
 ## 📁 Project Structure
-
 ```
 csGPT/
-├── client/                 # React.js frontend
+├── backend/
+│   ├── dist/
+│   │   ├── assets/
+│   │   ├── favicon.png
+│   │   └── index.html
+│   ├── models/
+│   │   ├── chatModel.js
+│   │   └── user.js
+│   ├── auth.middleware.js
+│   ├── dbConnect.js
+│   ├── server.js
+│   ├── .env
+│   ├── .gitignore
+│   ├── package.json
+│   └── package-lock.json
+├── Client/
+│   ├── public/
+│   │   └── favicon.png
 │   ├── src/
-│   │   ├── components/     # UI components
-│   │   ├── pages/          # App pages
-│   │   └── App.jsx         # Root component
-│   └── package.json
-├── backend/                # Node.js + Express backend
-│   ├── routes/             # API routes
-│   ├── controllers/        # Request handlers
-│   └── server.js           # Entry point
-├── docs/                   # Technical reports
-│   ├── FarhanKhan_csgpt_Technical-Report.pdf
-│   └── csgpt_performance_metrics_report.pdf
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── lib/
+│   │   ├── Pages/
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── .env
+│   ├── .gitignore
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── tailwind.config.js
+│   └── vite.config.js
+├── docs/
+│   ├── csgpt_performance_metrics_report.pdf
+│   ├── csgpt-ollama.txt
+│   └── FarhanKhan_csgpt_Technical-Report.pdf
 └── README.md
 ```
 
@@ -145,11 +168,9 @@ csGPT has been benchmarked and evaluated for response quality, latency, and accu
 
 📄 **[View Full Performance Metrics Report →](https://github.com/farhan-khan11/csGPT/blob/main/docs/csgpt_performance_metrics_report.pdf)**
 
-Key highlights:
 A detailed technical report covering the system architecture, model integration, design decisions, and evaluation methodology is available:
-> Benchmarked across latency, accuracy, and streaming stability.
-> Full results available in the **[Performance Metrics Report →](https://github.com/farhan-khan11/csGPT/blob/main/docs/csgpt_performance_metrics_report.pdf)**
-> Full results available in the **[Technical Report →](https://github.com/farhan-khan11/csGPT/blob/main/docs/FarhanKhan_csgpt_Technical-Report.pdf)**
+
+📄 **[Technical Report →](https://github.com/farhan-khan11/csGPT/blob/main/docs/FarhanKhan_csgpt_Technical-Report.pdf)**
 
 
 
